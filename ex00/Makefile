@@ -2,7 +2,7 @@ NAME = office
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 #-fsanitize=address
 
-SRCS = main.cpp 
+SRCS = main.cpp Bureaucrat.cpp Bureaucrat.hpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

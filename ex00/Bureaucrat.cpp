@@ -13,7 +13,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 	std::cout << "Bureaucrat " << this->_name << " constructed with grade " << grade << "." << std::endl;
 }
 
-void	Bureaucrat::setGrade(int grade)
+void Bureaucrat::setGrade(int grade)
 {
 	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
@@ -23,10 +23,16 @@ void	Bureaucrat::setGrade(int grade)
 		this->_grade = grade;
 }
 
-// Bureaucrat::~Bureaucrat()
-// {
-// 	std::cout << "Bureaucrat with name of " << name << " is destroyed." << std::endl;
-// }
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "Bureaucrat with name of " << getName() << " is destroyed." << std::endl;
+}
+
+const std::string &Bureaucrat::getName() const
+{
+	return (this->_name);
+}
+
 
 // Animal &Animal::operator=(const Animal &copy)
 // {
@@ -49,11 +55,11 @@ void	Bureaucrat::setGrade(int grade)
 // 	std::cout << "***MAKING ANIMAL SOUNDS***" << std::endl;
 // }
 
-// std::string Animal::getType(void) const
-// {
-// 	return (type);
-// }
 
+int Bureaucrat::getGrade() const
+{
+	return (this->_grade);
+}
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {

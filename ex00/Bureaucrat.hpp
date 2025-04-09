@@ -19,7 +19,13 @@ class Bureaucrat
 	// Constructors
 	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
+	~Bureaucrat() = default;
 
+	std::string const &getName() const;
+	int getGrade() const;
+
+	void incrementGrade();
+	void decrementGrade();
 	// Exception classes
 	class GradeTooHighException : public std::exception
 	{
