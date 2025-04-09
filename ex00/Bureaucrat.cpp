@@ -9,12 +9,18 @@ Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150)
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 {
-	if (grade < 1)
-		throw GradeTooHighException();
+	setGrade(grade);
+	std::cout << "Bureaucrat " << this->_name << " constructed with grade " << grade << "." << std::endl;
+}
+
+void	Bureaucrat::setGrade(int grade)
+{
 	if (grade > 150)
-		throw GradeTooLowException();
-	this->grade = grade;
-	std::cout << "Bureaucrat " << this->name << " constructed with grade " << grade << "." << std::endl;
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->_grade = grade;
 }
 
 // Bureaucrat::~Bureaucrat()
@@ -48,15 +54,6 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 // 	return (type);
 // }
 
-void	Bureaucrat::setGrade(int grade)
-{
-	if (grade > 150)
-		throw Bureaucrat::GradeTooLowException();
-	else if (grade < 1)
-		throw Bureaucrat::GradeTooHighException();
-	else
-		this->_grade = grade;
-}
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
