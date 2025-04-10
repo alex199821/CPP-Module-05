@@ -1,8 +1,7 @@
 #include "Bureaucrat.hpp"
 
 // Constructors
-
-Bureaucrat::Bureaucrat() : _name("Bureaucrat"), _grade(150)
+Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 {
 	std::cout << "Default Bureaucrat Constructor Called" << std::endl;
 }
@@ -23,6 +22,32 @@ void Bureaucrat::setGrade(int grade)
 		this->_grade = grade;
 }
 
+void Bureaucrat::incrementGrade()
+{
+	int grade;
+	
+	grade = getGrade() - 1;
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->_grade = grade;
+}
+
+void Bureaucrat::decrementGrade()
+{
+	int grade;
+	
+	grade = getGrade() + 1;
+	if (grade > 150)
+		throw Bureaucrat::GradeTooLowException();
+	else if (grade < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else
+		this->_grade = grade;
+}
+
 Bureaucrat::~Bureaucrat()
 {
 	std::cout << "Bureaucrat with name of " << getName() << " is destroyed." << std::endl;
@@ -33,28 +58,20 @@ const std::string &Bureaucrat::getName() const
 	return (this->_name);
 }
 
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)
+{
+	if (this != &copy)
+	{
+		this->_grade = copy._grade;
+		std::cout << "Assignment operator called for Bureaucrat '" << copy._name << "'." << std::endl;
+	}
+	return *this;
+}
 
-// Animal &Animal::operator=(const Animal &copy)
-// {
-// 	if (this != &copy)
-// 	{
-// 		type = copy.type;
-// 	}
-// 	std::cout << "Assignment was made to Animal with type of " << type << "." << std::endl;
-// 	return (*this);
-// }
-
-// Animal::Animal(const Animal &copy) : type(copy.type)
-// {
-// 	*this = copy;
-// 	std::cout << "Animal with type of " << type << " was copied." << std::endl;
-// };
-// // Member Functions
-// void Animal::makeSound() const
-// {
-// 	std::cout << "***MAKING ANIMAL SOUNDS***" << std::endl;
-// }
-
+std::ostream &operator<<(std::ostream& out, Bureaucrat const &bureaucrat) {
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    return out;
+}
 
 int Bureaucrat::getGrade() const
 {

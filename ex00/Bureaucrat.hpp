@@ -13,17 +13,17 @@ class Bureaucrat
   private:
 	const std::string _name;
 	int _grade;
-    void setGrade(int grade);
 
   public:
 	// Constructors
 	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
-	~Bureaucrat() = default;
-
+	~Bureaucrat();
+	Bureaucrat &operator=(const Bureaucrat &copy);
 	std::string const &getName() const;
 	int getGrade() const;
 
+	void setGrade(int grade);
 	void incrementGrade();
 	void decrementGrade();
 	// Exception classes
@@ -39,3 +39,6 @@ class Bureaucrat
 		const char *what() const throw();
 	};
 };
+
+// ostream Overload
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &bureaucrat);
