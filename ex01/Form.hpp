@@ -17,6 +17,7 @@ class Form
 	// Constructors
 	Form();
 	Form(const std::string &name, const int signGrade, const int execGrade);
+	Form(const Form &copy);
 	~Form();
 	Form &operator=(const Form &copy);
 
@@ -28,8 +29,7 @@ class Form
 
 	// Setters
 	void beSigned(const Bureaucrat &bureaucrat);
-	void signForm(const Bureaucrat &bureaucrat);
-
+	
 	// Exceptions
 	class GradeTooHighException : public std::exception
 	{

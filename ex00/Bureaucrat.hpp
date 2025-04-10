@@ -18,6 +18,7 @@ class Bureaucrat
 	// Constructors
 	Bureaucrat();
 	Bureaucrat(const std::string &name, int grade);
+	Bureaucrat(const Bureaucrat &copy);
 	~Bureaucrat();
 	Bureaucrat &operator=(const Bureaucrat &copy);
 	std::string const &getName() const;

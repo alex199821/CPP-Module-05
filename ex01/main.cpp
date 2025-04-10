@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 // void	leaks(void)
 // {
@@ -8,48 +9,31 @@
 int	main(void)
 {
 	// atexit(leaks);
-	Bureaucrat specialBureaucrat("John", 43);
-	std::cout << specialBureaucrat << std::endl;
-	Bureaucrat bureaucrat;
-	std::cout << bureaucrat << std::endl;
+	Bureaucrat averageBureaucrat("Bureaucrat John", 43);
+	std::cout << averageBureaucrat << std::endl;
+	std::cout << std::endl;
+	Form standardForm("Standard Form", 75, 75);
+	std::cout << standardForm << std::endl;
+	std::cout << std::endl;
+	Form preseidentialForm("Presidential Form", 1, 1);
+	std::cout << preseidentialForm << std::endl;
+	std::cout << std::endl;
 	try
 	{
-		bureaucrat.setGrade(1);
+		averageBureaucrat.signForm(preseidentialForm);
 	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
-	try
-	{
-		bureaucrat.incrementGrade();
-	}
-	catch (const Bureaucrat::GradeTooHighException &e)
+	catch (const Form::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	try
 	{
-		bureaucrat.decrementGrade();
+		averageBureaucrat.signForm(standardForm);
 	}
-	catch (const Bureaucrat::GradeTooLowException &e)
+	catch (const Form::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
-	try
-	{
-		bureaucrat.setGrade(151);
-	}
-	catch (const Bureaucrat::GradeTooLowException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooHighException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
+	std::cout << std::endl;
 	return (0);
 }

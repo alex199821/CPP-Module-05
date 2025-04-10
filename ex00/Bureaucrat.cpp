@@ -12,6 +12,12 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
 	std::cout << "Bureaucrat " << this->_name << " constructed with grade " << grade << "." << std::endl;
 }
 
+Bureaucrat::Bureaucrat(const Bureaucrat &copy)
+	: _name(copy._name), _grade(copy._grade)
+{
+	std::cout << "Copy constructor called for Bureaucrat: " << copy._name << std::endl;
+}
+
 void Bureaucrat::setGrade(int grade)
 {
 	if (grade > 150)
