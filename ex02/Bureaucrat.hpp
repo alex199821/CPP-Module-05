@@ -3,18 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
+/*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:09 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:08:10 by macbook          ###   ########.fr       */
+/*   Updated: 2025/04/11 19:56:18 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <cctype>
-#include <iomanip>
-#include <ios>
 #include <iostream>
 #include <ostream>
 #include <sstream>

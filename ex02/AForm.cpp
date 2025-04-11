@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
+/*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:35 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 13:23:10 by macbook          ###   ########.fr       */
+/*   Updated: 2025/04/11 19:54:02 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ AForm::AForm() : _name("Default"), _target("Default"), _gradeToSign(150), _grade
 	std::cout << "Default AForm Constructor Called" << std::endl;
 }
 
-AForm::AForm(const std::string &name, std::string &target, const int gradeToSign,
+AForm::AForm(const std::string &name, const std::string &target, const int gradeToSign,
 	const int gradeToExecute) : _name(name), _target(target), _gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute), _signed(false)
 {
@@ -103,11 +103,6 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 		throw GradeTooLowException();
 	}
 	_signed = true;
-}
-
-void AForm::setTarget(std::string const &target)
-{
-	_target = target;
 }
 
 // Exceptions
