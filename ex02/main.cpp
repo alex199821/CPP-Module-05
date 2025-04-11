@@ -5,13 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 04:08:41 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:08:41 by macbook          ###   ########.fr       */
+/*   Created: 2025/04/11 04:08:02 by macbook           #+#    #+#             */
+/*   Updated: 2025/04/11 04:08:04 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // void	leaks(void)
 // {
@@ -24,25 +24,25 @@ int	main(void)
 	Bureaucrat averageBureaucrat("Bureaucrat John", 43);
 	std::cout << averageBureaucrat << std::endl;
 	std::cout << std::endl;
-	Form standardForm("Standard Form", 75, 75);
+	AForm standardForm("Standard AForm", 75, 75);
 	std::cout << standardForm << std::endl;
 	std::cout << std::endl;
-	Form preseidentialForm("Presidential Form", 1, 1);
+	AForm preseidentialForm("Presidential AForm", 1, 1);
 	std::cout << preseidentialForm << std::endl;
 	std::cout << std::endl;
 	try
 	{
-		averageBureaucrat.signForm(preseidentialForm);
+		averageBureaucrat.signAForm(preseidentialForm);
 	}
-	catch (const Form::GradeTooLowException &e)
+	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	try
 	{
-		averageBureaucrat.signForm(standardForm);
+		averageBureaucrat.signAForm(standardForm);
 	}
-	catch (const Form::GradeTooLowException &e)
+	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}

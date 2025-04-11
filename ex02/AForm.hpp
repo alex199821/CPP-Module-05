@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/11 04:08:45 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:08:45 by macbook          ###   ########.fr       */
+/*   Created: 2025/04/11 04:08:24 by macbook           #+#    #+#             */
+/*   Updated: 2025/04/11 04:36:28 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,22 @@
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
   private:
 	const std::string _name;
 	const int _gradeToSign;
 	const int _gradeToExecute;
 	bool _signed;
+	std::string _target;
 
   public:
 	// Constructors
-	Form();
-	Form(const std::string &name, const int signGrade, const int execGrade);
-	Form(const Form &copy);
-	~Form();
-	Form &operator=(const Form &copy);
+	AForm();
+	AForm(const std::string &name, const int signGrade, const int execGrade);
+	AForm(const AForm &copy);
+	~AForm();
+	AForm &operator=(const AForm &copy);
 
 	// Getters
 	std::string const &getName() const;
@@ -41,7 +42,8 @@ class Form
 
 	// Setters
 	void beSigned(const Bureaucrat &bureaucrat);
-
+	virtual void execute(const Bureaucrat &executor) const = 0;
+	void setTarget(std::string const &target);
 	// Exceptions
 	class GradeTooHighException : public std::exception
 	{
@@ -57,4 +59,4 @@ class Form
 };
 
 // ostream Overload
-std::ostream &operator<<(std::ostream &out, const Form &form);
+std::ostream &operator<<(std::ostream &out, const AForm &form);
