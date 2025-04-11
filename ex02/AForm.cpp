@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:35 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:37:22 by macbook          ###   ########.fr       */
+/*   Updated: 2025/04/11 13:23:10 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <iostream>
 
 // Constructors
-AForm::AForm() : _name("Default"), _gradeToSign(150), _gradeToExecute(150),
+AForm::AForm() : _name("Default"), _target("Default"), _gradeToSign(150), _gradeToExecute(150),
 	_signed(false)
 {
 	std::cout << "Default AForm Constructor Called" << std::endl;
 }
 
-AForm::AForm(const std::string &name, const int gradeToSign,
-	const int gradeToExecute) : _name(name), _gradeToSign(gradeToSign),
+AForm::AForm(const std::string &name, std::string &target, const int gradeToSign,
+	const int gradeToExecute) : _name(name), _target(target), _gradeToSign(gradeToSign),
 	_gradeToExecute(gradeToExecute), _signed(false)
 {
 	if (gradeToExecute < 1 || gradeToSign < 1)
@@ -36,7 +36,7 @@ AForm::AForm(const std::string &name, const int gradeToSign,
 	std::cout << "AForm: " << name << " constructed with Grade To Sign " << gradeToSign << " and Grade To Execute " << gradeToExecute << "." << std::endl;
 }
 
-AForm::AForm(const AForm &copy) : _name(copy._name),
+AForm::AForm(const AForm &copy) : _name(copy._name), _target(copy._target),
 	_gradeToSign(copy._gradeToSign), _gradeToExecute(copy._gradeToExecute),
 	_signed(copy._signed)
 {
@@ -63,7 +63,8 @@ AForm &AForm::operator=(const AForm &copy)
 std::ostream &operator<<(std::ostream& out, AForm const &form) {
 	out << form.getName()
 	    << ", AForm signed: " << (form.getSigned() ? "True" : "False")
-	    << ", Grade to sign: " << form.getGradeToSign()
+		<< ", Target: " << form.getTarget()
+		<< ", Grade to sign: " << form.getGradeToSign()
 	    << ", Grade to execute: " << form.getGradeToExecute();
 	return out;
 }
@@ -72,6 +73,11 @@ std::ostream &operator<<(std::ostream& out, AForm const &form) {
 const std::string &AForm::getName(void) const
 {
 	return (this->_name);
+}
+
+const std::string &AForm::getTarget(void) const
+{
+	return (this->_target);
 }
 
 int AForm::getGradeToSign(void) const

@@ -6,7 +6,7 @@
 /*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:24 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:36:28 by macbook          ###   ########.fr       */
+/*   Updated: 2025/04/11 13:08:45 by macbook          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,22 @@ class AForm
 {
   private:
 	const std::string _name;
+	std::string _target;
 	const int _gradeToSign;
 	const int _gradeToExecute;
 	bool _signed;
-	std::string _target;
 
   public:
 	// Constructors
 	AForm();
-	AForm(const std::string &name, const int signGrade, const int execGrade);
+	AForm(const std::string &name, std::string &target, const int signGrade, const int execGrade);
 	AForm(const AForm &copy);
 	~AForm();
 	AForm &operator=(const AForm &copy);
 
 	// Getters
 	std::string const &getName() const;
+	std::string const &getTarget(void) const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 	bool getSigned() const;
