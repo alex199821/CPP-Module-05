@@ -2,7 +2,7 @@ NAME = office
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 #-fsanitize=address
 
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

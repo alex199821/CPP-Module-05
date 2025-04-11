@@ -6,7 +6,7 @@
 /*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:35 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 19:54:02 by auplisas         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:37:26 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,18 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 	_signed = true;
 }
 
+// Execution
+void AForm::checkExecutionRequirements(const Bureaucrat &executor) const
+{
+	if(!getSigned())
+	{
+		throw NotSignedException();
+	}
+	if(getGradeToExecute() < executor.getGrade())
+	{
+		throw GradeTooLowException();
+	}
+}
 // Exceptions
 const char *AForm::GradeTooHighException::what() const throw()
 {
@@ -114,4 +126,9 @@ const char *AForm::GradeTooHighException::what() const throw()
 const char *AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low!");
+}
+
+const char *AForm::NotSignedException::what() const throw()
+{
+	return ("Form is not signed");
 }

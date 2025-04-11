@@ -6,12 +6,12 @@
 /*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:18 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 19:56:21 by auplisas         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:36:49 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 // Constructors
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
@@ -75,6 +75,21 @@ Bureaucrat::~Bureaucrat()
 const std::string &Bureaucrat::getName() const
 {
 	return (this->_name);
+}
+
+// Execution
+void Bureaucrat::executeForm(AForm const &form)
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+			// Assuming getName() exists in both Bureaucrat and AForm
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << this->getName() << " failed to execute " << form.getName() << " because: " << e.what() << std::endl;
+	}
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &copy)

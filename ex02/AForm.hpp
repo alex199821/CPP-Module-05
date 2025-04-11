@@ -6,7 +6,7 @@
 /*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:24 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 19:53:55 by auplisas         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:08:35 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 class Bureaucrat;
 
@@ -44,6 +45,8 @@ class AForm
 	// Setters
 	void beSigned(const Bureaucrat &bureaucrat);
 	virtual void execute(const Bureaucrat &executor) const = 0;
+	// Execution
+	void checkExecutionRequirements(const Bureaucrat &executor) const;
 	// Exceptions
 	class GradeTooHighException : public std::exception
 	{
@@ -52,6 +55,12 @@ class AForm
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+	  public:
+		const char *what() const throw();
+	};
+
+	class NotSignedException : public std::exception
 	{
 	  public:
 		const char *what() const throw();
