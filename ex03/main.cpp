@@ -6,37 +6,41 @@
 /*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:08:02 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/12 03:53:02 by auplisas         ###   ########.fr       */
+/*   Updated: 2025/04/12 03:57:02 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "Intern.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
-// void	leaks(void)
-// {
-// 	system("leaks office");
-// }
+void	leaks(void)
+{
+	system("leaks office");
+}
 
 int	main(void)
 {
-	// atexit(leaks);
-	Bureaucrat juniorBureaucrat("Junior Bureaucrat", 150);
-	std::cout << juniorBureaucrat << std::endl;
+	atexit(leaks);
+	//Intern and Bureaucrat creation forms
+	Intern intern;
 	std::cout << std::endl;
 	Bureaucrat seniorBureaucrat("Senior Bureaucrat", 1);
 	std::cout << seniorBureaucrat << std::endl;
 	std::cout << std::endl;
-	// ShrubberyCreationForm Tests
-	std::string shrubberyTarget = "ShrubberyCreationForm";
-	ShrubberyCreationForm ShrubberyCreationForm(shrubberyTarget);
+	// Form Creations
+	AForm *robotomyForm = intern.makeForm("robotomy request", "robotomyTarget");
+	AForm *presidentialForm = intern.makeForm("presidential pardon", "presidentialTarget");
+	AForm *shrubberyForm = intern.makeForm("shrubbery creation", "shrubberyTarget");
+	AForm *randomForm = intern.makeForm("random form", "randomTarget");
 	std::cout << std::endl;
+	// Robotomy Form Executions
 	try
 	{
-		seniorBureaucrat.executeForm(ShrubberyCreationForm);
+		seniorBureaucrat.executeForm(*robotomyForm);
 	}
 	catch (const AForm::NotSignedException &e)
 	{
@@ -44,35 +48,17 @@ int	main(void)
 	}
 	try
 	{
-		seniorBureaucrat.signAForm(ShrubberyCreationForm);
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	try
-	{
-		juniorBureaucrat.executeForm(ShrubberyCreationForm);
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	try
-	{
-		seniorBureaucrat.executeForm(ShrubberyCreationForm);
+		seniorBureaucrat.signAForm(*robotomyForm);
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	std::cout << std::endl;
-	// RobotomyRequestForm Tests
-	std::string robotomyTarget = "RobotomyRequestForm";
-	RobotomyRequestForm RobotomyRequestForm(robotomyTarget);
+	// Presidential Form Executions
 	try
 	{
-		seniorBureaucrat.executeForm(RobotomyRequestForm);
+		seniorBureaucrat.executeForm(*presidentialForm);
 	}
 	catch (const AForm::NotSignedException &e)
 	{
@@ -80,7 +66,7 @@ int	main(void)
 	}
 	try
 	{
-		seniorBureaucrat.signAForm(RobotomyRequestForm);
+		seniorBureaucrat.signAForm(*presidentialForm);
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
@@ -88,27 +74,17 @@ int	main(void)
 	}
 	try
 	{
-		juniorBureaucrat.executeForm(RobotomyRequestForm);
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	try
-	{
-		seniorBureaucrat.executeForm(RobotomyRequestForm);
+		seniorBureaucrat.executeForm(*presidentialForm);
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	std::cout << std::endl;
-	// PresidentialPardonForm Tests
-	std::string presidentialTarget = "PresidentialPardonForm";
-	PresidentialPardonForm PresidentialPardonForm(presidentialTarget);
+	// Shrubbery Form Executions
 	try
 	{
-		seniorBureaucrat.executeForm(PresidentialPardonForm);
+		seniorBureaucrat.executeForm(*shrubberyForm);
 	}
 	catch (const AForm::NotSignedException &e)
 	{
@@ -116,7 +92,7 @@ int	main(void)
 	}
 	try
 	{
-		seniorBureaucrat.signAForm(PresidentialPardonForm);
+		seniorBureaucrat.signAForm(*shrubberyForm);
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
@@ -124,20 +100,17 @@ int	main(void)
 	}
 	try
 	{
-		juniorBureaucrat.executeForm(PresidentialPardonForm);
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	try
-	{
-		seniorBureaucrat.executeForm(PresidentialPardonForm);
+		seniorBureaucrat.executeForm(*shrubberyForm);
 	}
 	catch (const AForm::GradeTooLowException &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	std::cout << std::endl;
+	delete shrubberyForm;
+	delete presidentialForm;
+	delete robotomyForm;
+	if (randomForm)
+		delete randomForm;
 	return (0);
 }

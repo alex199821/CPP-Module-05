@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbook <macbook@student.42.fr>            +#+  +:+       +#+        */
+/*   By: auplisas <auplisas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 04:09:06 by macbook           #+#    #+#             */
-/*   Updated: 2025/04/11 04:09:06 by macbook          ###   ########.fr       */
+/*   Updated: 2025/04/12 04:07:00 by auplisas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,16 @@
 int	main(void)
 {
 	// atexit(leaks);
-	Bureaucrat specialBureaucrat("John", 43);
+	try
+    {
+        Bureaucrat weakBureaucrat("Jane", 151);  // Will throw an exception
+        std::cout << weakBureaucrat << std::endl;
+    }
+    catch (const Bureaucrat::GradeTooLowException &e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+	Bureaucrat specialBureaucrat("John", 23);
 	std::cout << specialBureaucrat << std::endl;
 	Bureaucrat bureaucrat;
 	std::cout << bureaucrat << std::endl;
@@ -32,6 +41,7 @@ int	main(void)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
 	try
 	{
@@ -41,6 +51,7 @@ int	main(void)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 	try
 	{
 		bureaucrat.decrementGrade();
@@ -50,6 +61,7 @@ int	main(void)
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
+	std::cout << std::endl;
 	try
 	{
 		bureaucrat.setGrade(151);
@@ -63,5 +75,6 @@ int	main(void)
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 	std::cout << "Updated grade is: " << bureaucrat.getGrade() << std::endl;
+	std::cout << std::endl;
 	return (0);
 }
